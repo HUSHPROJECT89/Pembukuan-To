@@ -17,8 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const transaksi = getData("transaksi");
 
       let barangAda = stok.find(item => item.nama === barang);
-      if (barangAda) barangAda.jumlah -= jumlah;
-      else stok.push({ nama: barang, jumlah: 0 });
+      if (barangAda) {
+  barangAda.jumlah += jumlah;
+} else {
+  stok.push({ nama: barang, jumlah }); // ini dia! langsung pakai jumlah
+}
 
       transaksi.push({ barang, jumlah, harga, jenis: "penjualan", waktu: new Date().toISOString() });
 
